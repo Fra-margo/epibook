@@ -1,37 +1,26 @@
 import React from "react";
 import fantasy from '../data/books/fantasy.json';
-import history from '../data/books/history.json';
-import horror from '../data/books/horror.json';
-import romance from '../data/books/romance.json';
-import scifi from '../data/books/scifi.json';
-import {Row, Col} from "react-bootstrap";
-import Card from 'react-bootstrap/Card';
+import {Row, Col, Card} from "react-bootstrap";
 
-class Books extends React.Component{
-  state = {bookFantasy: fantasy[0]}
+const AllTheBooks = () => {
+  console.log(fantasy)
 
-  render() {
-    return (
-      <Row>
-        {fantasy.map((book) => (
-          <Col md={3} key={book.asin}>
-            <Card style={{ width: '20rem' }}>
-              <Card.Img variant="top" src={book.img} alt="copertina libro"/>
+  return (
+    <Row>
+      {fantasy.map((book) => {
+        return (
+          <Col xs={12} md={4} key={book.asin}>
+            <Card className="book-cover">
+              <Card.Img variant="top" src={book.img} />
               <Card.Body>
                 <Card.Title>{book.title}</Card.Title>
-                <Card.Text>
-                  {book.price}
-                  <br />
-                  {book.category}
-                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
-        ))}
-      </Row>
-    );
-  }
+        )
+      })}
+    </Row>
+  )
 }
 
-
-export default Books
+export default AllTheBooks
