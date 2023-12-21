@@ -23,8 +23,8 @@ const Booklist = (props) => {
             </div>
             <Row>
                 {filteredBooks.map((book, index) =>(
-                    <Col md={3}>
-                        <SingleBook key={index} book={book}/>
+                    <Col md={3} key={index}>
+                        <SingleBook book={book}/>
                     </Col>
                 ))}
             </Row>
