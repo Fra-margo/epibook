@@ -17,7 +17,9 @@ class AddComment extends Component {
         'https://striveschool-api.herokuapp.com/api/comments',
         {
           method: 'POST',
-          body: JSON.stringify(this.state.comment),
+          body: JSON.stringify({
+            ...this.state.comment,
+            elementId: this.props.asin}),
           headers: {
             'Content-type': 'application/json',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTliZmMwOWUwZGQxZDAwMTgyZDE3NWYiLCJpYXQiOjE3MDQ3MjE0MTcsImV4cCI6MTcwNTkzMTAxN30.OVsAcvQwTCUo_GBU9jMUQsyXsHDi9V_vvd_u_APOyxo',
@@ -33,6 +35,7 @@ class AddComment extends Component {
             elementId: this.props.asin,
           },
         })
+        this.props.updateComments();
       } else {
         console.log('error')
         alert('something went wrong')

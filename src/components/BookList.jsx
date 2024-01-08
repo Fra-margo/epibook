@@ -14,6 +14,9 @@ class BookList extends Component {
     this.setState({ selectedBook: newSelectedBook })
 
   };
+  updateComments = () => {
+    this.forceUpdate()
+  };
 
   render() {
     return (
@@ -48,7 +51,7 @@ class BookList extends Component {
           </Col>
           <Col md={6} className='text-center' style={{ position: 'sticky', top: 10, height: '100vh' }}>
           {this.state.selectedBook ? (
-              <CommentArea asin={this.state.selectedBook.asin} />
+              <CommentArea asin={this.state.selectedBook.asin} updateComments={this.updateComments} />
             ) : (
               <p>Seleziona un libro per visualizzare i commenti</p>
             )}

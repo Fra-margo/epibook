@@ -12,6 +12,17 @@ class CommentArea extends Component {
   }
 
   componentDidMount = async () => {
+    await this.fetchComments();
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.asin !== this.props.asin) {
+      this.setState({ isLoading: true, isError: false });
+      this.fetchComments();
+    }
+  }
+
+  fetchComments = async () => {
     try {
       let response = await fetch(
         'https://striveschool-api.herokuapp.com/api/comments/' +
@@ -36,13 +47,6 @@ class CommentArea extends Component {
     }
   }
   
-  componentDidUpdate(prevProps) {
-    if (prevProps.asin !== this.props.asin) {
-      this.setState({ isLoading: true, isError: false });
-      this.componentDidMount(this.props.asin);
-    }
-  }
-
   render() {
     return (
       <div className="text-center">

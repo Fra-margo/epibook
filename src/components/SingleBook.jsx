@@ -1,10 +1,9 @@
 import { Component } from 'react'
 import { Card } from 'react-bootstrap'
 
-
 class SingleBook extends Component {
   render() {
-    const { book, isSelected, onSelect } = this.props;
+    const { isSelected, onSelect } = this.props;
     return (
       <>
         <Card
