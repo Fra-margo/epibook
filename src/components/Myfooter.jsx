@@ -1,13 +1,9 @@
+const MyFooter = () => (
+  <footer className="d-flex bg-dark">
+    <span className="text-white m-auto">
+      <strong>EPICODE</strong> - Copyright {new Date().getFullYear()}
+    </span>
+  </footer>
+)
 
-
-function CustomFooter(){
-    return (
-      <footer className="d-flex bg-dark">
-        <span className="text-white m-auto">
-          <strong>EPICODE</strong> - Copyright {new Date().getFullYear()}
-        </span>
-      </footer>
-    );
-  };
-  
-export default CustomFooter
+export default MyFooter

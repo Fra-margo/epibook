@@ -1,17 +1,14 @@
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Navbar, Nav } from 'react-bootstrap'
 
-function Navigation() {
-    return (
-        <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#">EpiBooks</Navbar.Brand>
-            <Nav className="mr-auto">
-                <Nav.Link href="#">Shop</Nav.Link>
-                <Nav.Link href="#">About</Nav.Link>
-                <Nav.Link href="#">Browse</Nav.Link>
-            </Nav>
-        </Navbar>
-    )
-}
+const MyNav = () => (
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="#home">EpiBooks</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href="#home">Shop</Nav.Link>
+      <Nav.Link href="#about">About</Nav.Link>
+      <Nav.Link href="#browse">Browse</Nav.Link>
+    </Nav>
+  </Navbar>
+)
 
-export default Navigation
+export default MyNav

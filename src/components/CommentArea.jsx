@@ -1,45 +1,58 @@
-import React from "react";
-import CommentsList from "./CommentsList";
+import { Component } from 'react'
+import CommentList from './CommentList'
+import AddComment from './AddComment'
+import Loading from './Loading'
+import Error from './Error'
 
-class CommentArea extends React.Component{
-    constructor(props){
-        super(props)
+class CommentArea extends Component {
+  state = {
+    comments: [],
+    isLoading: true,
+    isError: false,
+  }
 
-        this.state= {
-            comments: []
+  componentDidMount = async () => {
+    try {
+      let response = await fetch(
+        'https://striveschool-api.herokuapp.com/api/comments/' +
+          this.props.asin,
+        {
+          headers: {
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTliZmMwOWUwZGQxZDAwMTgyZDE3NWYiLCJpYXQiOjE3MDQ3MjE0MTcsImV4cCI6MTcwNTkzMTAxN30.OVsAcvQwTCUo_GBU9jMUQsyXsHDi9V_vvd_u_APOyxo',
+          },
         }
-    }
-
-    componentDidMount() {
-        const {elementId} = this.props
-        this.fetchComments(elementId)
-    }
-
-    fetchComments(elementId){
-        fetch(`https://striveschool-api.herokuapp.com/api/books/${elementId}/comments`, {
-            headers: {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTg0NDc1NWI1MjViYjAwMThlZDA4MTQiLCJpYXQiOjE3MDMxNjc4MjksImV4cCI6MTcwNDM3NzQyOX0.WoIELI94qbbsBNflw6IW3ANvpmEXbJ6j1ZgkIjI_f40"
-            }
-            })
-          .then((response) => response.json())
-          .then((data) => {
-            this.setState({ comments: data });
-          })
-          .catch((error) => {
-            console.error("Errore nel fetch delle recensioni:", error);
-          });
+      )
+      console.log(response)
+      if (response.ok) {
+        let comments = await response.json()
+        this.setState({ comments: comments, isLoading: false, isError: false })
+      } else {
+        console.log('error')
+        this.setState({ isLoading: false, isError: true })
       }
-    
-      render() {
-        const { comments } = this.state;
-    
-        return (
-          <div>
-            <h3>Recensioni:</h3>
-            <CommentsList comments={comments} />
-          </div>
-        );
-      }
+    } catch (error) {
+      console.log(error)
+      this.setState({ isLoading: false, isError: true })
     }
-    
-export default CommentArea;
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.asin !== this.props.asin) {
+      this.setState({ isLoading: true, isError: false });
+      this.componentDidMount(this.props.asin);
+    }
+  }
+
+  render() {
+    return (
+      <div className="text-center">
+        {this.state.isLoading && <Loading />}
+        {this.state.isError && <Error />}
+        <AddComment asin={this.props.asin} />
+        <CommentList commentsToShow={this.state.comments} />
+      </div>
+    )
+  }
+}
+
+export default CommentArea
