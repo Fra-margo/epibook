@@ -1,25 +1,27 @@
-import { Component } from 'react'
+import { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 
-class SingleBook extends Component {
-  render() {
-    const { isSelected, onSelect } = this.props;
+const SingleBook = (props) => {
+    const { isSelected, onSelect } = props;
+    const [borderStyle, setBorderStyle] = useState('none')
+    useEffect(() => {
+      setBorderStyle(isSelected ? '3px solid red' : 'none' )
+    }, [isSelected])
     return (
       <>
         <Card
           onClick={onSelect}
-          style={{ border: isSelected ? '3px solid red' : 'none' }}
+          style={{ border: borderStyle}}
         >
-          <Card.Img variant="top" src={this.props.book.img} />
+          <Card.Img variant="top" src={props.book.img} />
           <Card.Body>
             <Card.Title style={{ color: 'black' }}>
-              {this.props.book.title}
+              {props.book.title}
             </Card.Title>
           </Card.Body>
         </Card>
       </>
     )
   }
-}
 
 export default SingleBook
