@@ -32,7 +32,6 @@ const AddComment = (props) => {
           rate: 1,
           elementId: props.asin,
         });
-        props.updateComments();
       } else {
         console.log('error');
         alert('something went wrong');
