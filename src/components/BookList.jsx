@@ -44,7 +44,7 @@ const BookList = (props) => {
         </Col>
         <Col md={6} className='text-center overflow-auto' style={{ position: 'sticky', top: 10, height: '100vh', maxHeight: '80vh'}}>
           {selectedBook ? (
-            <CommentArea asin={selectedBook ? selectedBook.asin : null} />
+            <CommentArea asin={selectedBook ? selectedBook.asin : null} data-testid="cardgroup-item"/>
           ) : (
             <p>Seleziona un libro per visualizzare i commenti</p>
           )}

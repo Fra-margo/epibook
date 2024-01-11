@@ -13,7 +13,7 @@ const CommentArea = (props) => {
     try {
       let response = await fetch(
         'https://striveschool-api.herokuapp.com/api/comments/' +
-          props.asin,
+        props.asin,
         {
           headers: {
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTliZmMwOWUwZGQxZDAwMTgyZDE3NWYiLCJpYXQiOjE3MDQ3MjE0MTcsImV4cCI6MTcwNTkzMTAxN30.OVsAcvQwTCUo_GBU9jMUQsyXsHDi9V_vvd_u_APOyxo',
@@ -36,8 +36,8 @@ const CommentArea = (props) => {
       setIsError(true)
     }
   }
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
       setIsError(false)
@@ -46,15 +46,15 @@ const CommentArea = (props) => {
 
     fetchData()
   }, [props.asin])
-  
-    return (
-      <div className="text-center">
-        {isLoading && <Loading />}
-        {isError && <Error />}
-        <AddComment asin={props.asin} />
-        <CommentList commentsToShow={comments} />
-      </div>
-    )
-  }
+
+  return (
+    <div data-testid="comment-area" className="text-center">
+      {isLoading && <Loading />}
+      {isError && <Error />}
+      <AddComment asin={props.asin} />
+      <CommentList commentsToShow={comments} />
+    </div>
+  )
+}
 
 export default CommentArea
