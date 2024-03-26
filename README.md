@@ -1,3 +1,7 @@
+This project originated as an exercise in using React. The task involved creating a webpage where users can view books fetched from an API and display their respective comments (also fetched from the API) for each book. Additionally, users have the ability to add new comments and edit their own comments.
+
+Questo progetto nasce come esercitazione nell'utilizzo di React. L'esercizio consisteva nel creare una pagina web dove si possono visualizzare dei libri, presi da un API, e visualizzare, per ogni libro, i relativi commenti (presi anche essi dall'API). In più si ha la possibilità di aaggiungere nuovi commenti e modificarne i propri.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
